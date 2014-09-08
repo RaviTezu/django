@@ -14,3 +14,4 @@ Commands:
 | To launch Python shell:              | python manage.py shell                       |
 | To list all available commands:      | python manage.py list                        |
 | To see all SQL that Django executes: | python manage.py sql [app-name]              |
+| To get more help:                    | python manage.py sql --help                  |
