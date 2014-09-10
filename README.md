@@ -15,3 +15,8 @@ Commands:
 | To list all available commands:      | python manage.py list                        |
 | To see all SQL that Django executes: | python manage.py sql [app-name]              |
 | To get more help:                    | python manage.py sql --help                  |
+
+Admin site:
+===
+- http://127.0.0.1:8000/admin when using django development server
+- You may need to enale this app in settings.py and urls.py
