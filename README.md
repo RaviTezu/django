@@ -20,3 +20,4 @@ Admin site:
 ===
 - http://127.0.0.1:8000/admin when using django development server
 - You may need to enale this app in settings.py and urls.py
+- For creating a super user: python manage.py createsuperuser --username=admin --email=admin@example.com
