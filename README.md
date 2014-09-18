@@ -21,6 +21,7 @@ Commands:
 | To create Tables from models:        | python manage.py syncdb                      |
 | To start django dev server:          | python manange.py runserver                  |
 | To launch Python shell:              | python manage.py shell                       |
+| To check for errors in models        | python manage.py validate                    |
 | To list all available commands:      | python manage.py list                        |
 | To see all SQL that Django executes: | python manage.py sql [app-name]              |
 | To get more help:                    | python manage.py sql --help                  |
