@@ -1,0 +1,533 @@
+rpothan@helium:~/workspace $ django-admin.py startproject basicproj
+rpothan@helium:~/workspace $ ls
+BambooAPI  basicproj  NetApp  NSI-DOCS  tshirts
+rpothan@helium:~/workspace $ cd basicproj
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  manage.py
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 10:49:40
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 10:49:43] "GET / HTTP/1.1" 200 1757
+^Crpothan@helium:~/workspace/basicproj $ django-admin.py --version
+1.6.5
+rpothan@helium:~/workspace/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  manage.py
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj/basicproj $ python manage.py syncdb
+python: can't open file 'manage.py': [Errno 2] No such file or directory
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ python manage.py syncdb
+Creating tables ...
+Creating table django_admin_log
+Creating table auth_permission
+Creating table auth_group_permissions
+Creating table auth_group
+Creating table auth_user_groups
+Creating table auth_user_user_permissions
+Creating table auth_user
+Creating table django_content_type
+Creating table django_session
+
+You just installed Django's auth system, which means you don't have any superusers defined.
+Would you like to create one now? (yes/no): yes
+Username (leave blank to use 'rpothan'): admin
+Email address: admin@ravitezu.com
+Password: 
+Password (again): 
+Superuser created successfully.
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 10:50:49
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 10:50:52] "GET / HTTP/1.1" 200 1757
+[18/Sep/2014 10:50:57] "GET /admin/ HTTP/1.1" 200 1865
+[18/Sep/2014 10:51:00] "POST /admin/ HTTP/1.1" 302 0
+[18/Sep/2014 10:51:00] "GET /admin/ HTTP/1.1" 200 2719
+[18/Sep/2014 10:51:02] "GET /admin/logout/ HTTP/1.1" 200 1135
+^Crpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py
+rpothan@helium:~/workspace/basicproj $ 
+rpothan@helium:~/workspace/basicproj $ 
+rpothan@helium:~/workspace/basicproj $ python manage.py startapp tshirts
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  models.py  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ vi models.py 
+rpothan@helium:~/workspace/basicproj/tshirts $ cat models.py 
+from django.db import models
+# Create your models here.
+
+class Tshirts(models.Model):
+    """ Class for tshirts """
+    brand = models.CharField(max_length=20)
+    size  = models.CharField(max_length=5)
+    color = models.CharField(max_length=12)
+
+rpothan@helium:~/workspace/basicproj/tshirts $ echo "A table with name Tshirts will be created and with brand, size, color cloumns"
+A table with name Tshirts will be created and with brand, size, color cloumns
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  models.py  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj/basicproj $ cat settings.py| grep -i tshirts -A 8 -B 3
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tshirts',
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+rpothan@helium:~/workspace/basicproj/basicproj $ cat settings.py| grep -i tshirts -A 2 -B 8
+
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tshirts',
+)
+
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py validate
+0 errors found
+rpothan@helium:~/workspace/basicproj $ python manage.py tshirts validate
+Unknown command: 'tshirts'
+Type 'manage.py help' for usage.
+rpothan@helium:~/workspace/basicproj $ python manage.py validate tshirts
+CommandError: Command doesn't accept any arguments
+rpothan@helium:~/workspace/basicproj $ python manage.py validate
+0 errors found
+rpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ python manage.py validate
+python: can't open file 'manage.py': [Errno 2] No such file or directory
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ python manage.py validate
+0 errors found
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py sql tshirts
+BEGIN;
+CREATE TABLE "tshirts_tshirts" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "brand" varchar(20) NOT NULL,
+    "size" varchar(5) NOT NULL,
+    "color" varchar(12) NOT NULL
+)
+;
+
+COMMIT;
+rpothan@helium:~/workspace/basicproj $ python manage.py syncdb
+Creating tables ...
+Creating table tshirts_tshirts
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+rpothan@helium:~/workspace/basicproj $ pytho manage.py shell
+No command 'pytho' found, did you mean:
+ Command 'python' from package 'python-minimal' (main)
+pytho: command not found
+rpothan@helium:~/workspace/basicproj $ python manage.py shell
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:00:40.920645) while time zone support is active.
+  RuntimeWarning)
+
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 1.2.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+/usr/lib/python2.7/dist-packages/IPython/terminal/interactiveshell.py:432: DeprecationWarning: With-statements now directly support multiple context managers
+  with nested(self.builtin_trap, self.display_trap):
+
+
+In [1]: from tshirts.models import Tshirts
+
+In [2]: s = Tshirts(brand="LEE", size="M", color="Blue")
+
+In [3]: s.save()
+
+In [4]: s1 = Tshirts(brand="TOMMY H.", size="L", color="Black")
+
+In [5]: s1.save()
+
+In [6]: s2 = Tshirts(brand="WOODLAND", size="S", color="White")
+
+In [7]: s2.save()
+
+In [8]: exit
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:02:59.592687) while time zone support is active.
+  RuntimeWarning)
+
+rpothan@helium:~/workspace/basicproj $ python manage.py shell
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:03:10.874966) while time zone support is active.
+  RuntimeWarning)
+
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 1.2.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+/usr/lib/python2.7/dist-packages/IPython/terminal/interactiveshell.py:432: DeprecationWarning: With-statements now directly support multiple context managers
+  with nested(self.builtin_trap, self.display_trap):
+
+
+In [1]: from tshirts.models import Tshirts
+
+In [2]: print Tshirts.objectsall()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-2-1b3fb5c8b37a> in <module>()
+----> 1 print Tshirts.objectsall()
+
+AttributeError: type object 'Tshirts' has no attribute 'objectsall'
+
+In [3]: print Tshirts.objects_all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-3-e8b01dc7354f> in <module>()
+----> 1 print Tshirts.objects_all()
+
+AttributeError: type object 'Tshirts' has no attribute 'objects_all'
+
+In [4]: print Tshirts.objects.all()
+[<Tshirts: Tshirts object>, <Tshirts: Tshirts object>, <Tshirts: Tshirts object>]
+
+In [5]: for i in Tshirts.objects.all():
+   ...:     print i
+   ...:     
+Tshirts object
+Tshirts object
+Tshirts object
+
+In [6]: exit
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:04:45.480653) while time zone support is active.
+  RuntimeWarning)
+
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ vi models.py
+rpothan@helium:~/workspace/basicproj/tshirts $ cat models.py | tail -3 
+    def __unicode__(self):
+        return self.brand + " - " + self.size + " - " + self.color
+
+rpothan@helium:~/workspace/basicproj/tshirts $ python manage.py shell
+python: can't open file 'manage.py': [Errno 2] No such file or directory
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ python manage.py shell
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:05:48.431110) while time zone support is active.
+  RuntimeWarning)
+
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 1.2.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+/usr/lib/python2.7/dist-packages/IPython/terminal/interactiveshell.py:432: DeprecationWarning: With-statements now directly support multiple context managers
+  with nested(self.builtin_trap, self.display_trap):
+
+
+In [1]: from tshirts.models import Tshirts
+
+In [2]: for shirt in Tshirts.objects.all():
+   ...:     print shirt
+   ...:     
+LEE - M - Blue
+TOMMY H. - L - Black
+WOODLAND - S - White
+
+In [3]: 
+
+In [3]: 
+
+In [3]: exit
+/usr/local/lib/python2.7/dist-packages/django/db/backends/sqlite3/base.py:58: RuntimeWarning: SQLite received a naive datetime (2014-09-18 11:06:16.400805) while time zone support is active.
+  RuntimeWarning)
+
+rpothan@helium:~/workspace/basicproj $ python manage.py syncdb
+Creating tables ...
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ vi urls.py
+rpothan@helium:~/workspace/basicproj/basicproj $ cat urls.py
+from django.conf.urls import patterns, include, url
+
+from django.contrib import admin
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'basicproj.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^tshirts/','tshirts.views.index'),
+)
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ vi views.py 
+rpothan@helium:~/workspace/basicproj/tshirts $ cat views.py 
+from django.shortcuts import render
+# Create your views here.
+def index(request):
+     return HttpResponse("Hello. This is a test.")
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:21:32
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:21:35] "GET / HTTP/1.1" 404 2006
+[18/Sep/2014 11:21:43] "GET /tshirts HTTP/1.1" 301 0
+[18/Sep/2014 11:21:43] "GET /tshirts/ HTTP/1.1" 500 70722
+^Crpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  admin.pyc  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py  views.pyc
+rpothan@helium:~/workspace/basicproj/tshirts $ vi views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ cat views.py
+from django.http import HttpResponse
+
+# Create your views here.
+def index(request):
+     return HttpResponse("Hello. This is a test.")
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:25:33
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:25:35] "GET / HTTP/1.1" 404 2006
+[18/Sep/2014 11:25:40] "GET /tshirts/ HTTP/1.1" 200 22
+[18/Sep/2014 11:25:57] "GET /tshirts/ HTTP/1.1" 200 22
+^Crpothan@helium:~/workspace/basicproj $ cd tshirts/
+rpothan@helium:~/workspace/basicproj/tshirts $ vi views.py
+rpothan@helium:~/workspace/basicproj/tshirts $ ls
+admin.py  admin.pyc  __init__.py  __init__.pyc  models.py  models.pyc  tests.py  views.py  views.pyc
+rpothan@helium:~/workspace/basicproj/tshirts $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  tshirts
+rpothan@helium:~/workspace/basicproj $ mkdir templates
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd templates/
+rpothan@helium:~/workspace/basicproj/templates $ touch index.html
+rpothan@helium:~/workspace/basicproj/templates $ ls
+index.html
+rpothan@helium:~/workspace/basicproj/templates $ vi index.html 
+rpothan@helium:~/workspace/basicproj/templates $ ls
+index.html
+rpothan@helium:~/workspace/basicproj/templates $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj/basicproj $ ls -ld /home/rpothan/workspace/basicproj/templates
+drwxrwxr-x 2 rpothan rpothan 4096 Sep 18 17:05 /home/rpothan/workspace/basicproj/templates
+rpothan@helium:~/workspace/basicproj/basicproj $ cd /home/rpothan/workspace/basicproj/templates
+rpothan@helium:~/workspace/basicproj/templates $ ls
+index.html
+rpothan@helium:~/workspace/basicproj/templates $ 
+rpothan@helium:~/workspace/basicproj/templates $ 
+rpothan@helium:~/workspace/basicproj/templates $ 
+rpothan@helium:~/workspace/basicproj/templates $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ 
+rpothan@helium:~/workspace/basicproj $ 
+rpothan@helium:~/workspace/basicproj $ 
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Traceback (most recent call last):
+  File "manage.py", line 10, in <module>
+    execute_from_command_line(sys.argv)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/management/__init__.py", line 399, in execute_from_command_line
+    utility.execute()
+  File "/usr/local/lib/python2.7/dist-packages/django/core/management/__init__.py", line 392, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/management/__init__.py", line 261, in fetch_command
+    commands = get_commands()
+  File "/usr/local/lib/python2.7/dist-packages/django/core/management/__init__.py", line 107, in get_commands
+    apps = settings.INSTALLED_APPS
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/__init__.py", line 54, in __getattr__
+    self._setup(name)
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/__init__.py", line 49, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/__init__.py", line 128, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 40, in import_module
+    __import__(name)
+  File "/home/rpothan/workspace/basicproj/basicproj/settings.py", line 29
+    TEMPLATE_DIRS = /home/rpothan/workspace/basicproj/templates
+                    ^
+SyntaxError: invalid syntax
+rpothan@helium:~/workspace/basicproj $ vi sett
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ ls
+__init__.py  __init__.pyc  settings.py  settings.pyc  urls.py  urls.pyc  wsgi.py  wsgi.pyc
+rpothan@helium:~/workspace/basicproj/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ cat settings.py|grep -i "TEMP"
+TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = '/home/rpothan/workspace/basicproj/templates'
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:38:57
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:39:00] "GET / HTTP/1.1" 404 2006
+[18/Sep/2014 11:39:06] "GET /tshirts/ HTTP/1.1" 500 80350
+^Crpothan@helium:~/workspace/basicproj $ ls -l /home/rpothan/workspace/basicproj/templates/templates/index.html
+ls: cannot access /home/rpothan/workspace/basicproj/templates/templates/index.html: No such file or directory
+rpothan@helium:~/workspace/basicproj $ ls -l /home/rpothan/workspace/basicproj/templates/templates/index.^Cml
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd basicproj/
+rpothan@helium:~/workspace/basicproj/basicproj $ vi settings.py
+rpothan@helium:~/workspace/basicproj/basicproj $ cat settings.py|grep TEMP
+TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = '/home/rpothan/workspace/basicproj/'
+rpothan@helium:~/workspace/basicproj/basicproj $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:40:44
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:40:46] "GET /tshirts/ HTTP/1.1" 500 118467
+^Crpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd templates/
+rpothan@helium:~/workspace/basicproj/templates $ ls
+index.html
+rpothan@helium:~/workspace/basicproj/templates $ vi index.html 
+rpothan@helium:~/workspace/basicproj/templates $ cd ..
+rpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ python manage.py runse
+Unknown command: 'runse'
+Type 'manage.py help' for usage.
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:42:03
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:42:05] "GET /tshirts/ HTTP/1.1" 200 155
+^Crpothan@helium:~/workspace/basicproj $ ls
+basicproj  db.sqlite3  manage.py  templates  tshirts
+rpothan@helium:~/workspace/basicproj $ cd templates/
+rpothan@helium:~/workspace/basicproj/templates $ ls
+index.html
+rpothan@helium:~/workspace/basicproj/templates $ vi index.html 
+rpothan@helium:~/workspace/basicproj/templates $ cd ..
+rpothan@helium:~/workspace/basicproj $ cat templates/index.html 
+<html>
+<h1> MY TSHIRTS COLLECTION </h1>
+{% if tshirts_list %}
+<ul>
+{% for shirt in tshirts_list %}
+<li> {{shirt.brand}} - {{shirt.size}} - {{shirt.color}}
+{% endfor %}
+{% endif %}
+</ul>
+</html>
+rpothan@helium:~/workspace/basicproj $ python manage.py runserver
+Validating models...
+
+0 errors found
+September 18, 2014 - 11:42:38
+Django version 1.6.5, using settings 'basicproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[18/Sep/2014 11:42:41] "GET /tshirts/ HTTP/1.1" 200 137
+
