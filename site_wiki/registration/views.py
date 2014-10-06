@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from .models import RegistrationForm
 
 def register(request):
     """ register view which handles registration """ 
