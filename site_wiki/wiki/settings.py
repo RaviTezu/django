@@ -1,4 +1,4 @@
-/"""
+"""
 Django settings for wiki project.
 
 For more information on this file, see
