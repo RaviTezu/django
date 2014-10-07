@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+from unipath import Path
+BASE_DIR = Path(__file__).ancestor(3)
 
 
 # Quick-start development settings - unsuitable for production
@@ -80,8 +81,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL  = "/static/"
+STATIC_ROOT = BASE_DIR.child('static')
+MEDIA_ROOT  = BASE_DIR.child('media')
 
 TEMPLATE_DIRS = ( 
-                 os.path.join(BASE_DIR, '/registration/'),
+                 BASE_DIR.child('templates'),
                 )
