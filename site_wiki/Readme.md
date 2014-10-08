@@ -1,1 +1,1 @@
-python manage.py syncdb --settings=wiki.settings.base
+python manage.py runserver --settings=wiki.settings.base
